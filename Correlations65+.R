@@ -1,5 +1,5 @@
-pop65 <- read.csv(file = "/Users/jaewonhyun/Downloads/borough-populationaged65.csv", header = TRUE, sep=",")
-totalpop <- read.csv(file = "/Users/jaewonhyun/Downloads/borough-population.csv", header = TRUE, sep=",")
+pop65 <- read.csv(file = "##put path to borough-populationaged65.csv after downloading from here", header = TRUE, sep=",")
+totalpop <- read.csv(file = "##put path to borough-population.csv after downloading from here", header = TRUE, sep=",")
 
 pop65$short_name <- NULL
 pop65$long_name <- NULL
