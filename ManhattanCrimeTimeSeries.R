@@ -23,11 +23,11 @@ manhattan <- ts(manhattan[,2],start = c(2006,1), frequency = 12)
 plot(manhattan, xlab = 'Years', ylim=c(0,12000), ylab = 'number of crimes in Manhattan')
 
 #1st order differencing
-plot(diff(manhattan), ylab = 'Differenced Number of Crimes in Manhattan'
+plot(diff(manhattan), ylab = 'Differenced Number of Crimes in Manhattan')
 #Make data stationary on variance
 plot(log10(manhattan),ylab = 'Log (Number of crimes)')
 #Make data stationary on both mean and variance
-plot(diff(log10(manhattan)), yalb='Differenced Log(Number of crimes)')
+plot(diff(log10(manhattan)), ylab='Differenced Log(Number of crimes)')
 
 #Plot ACF and PACF
 par(mfrow=c(1,2))
