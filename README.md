@@ -10,5 +10,5 @@ Finding Correlation in R between population 65+ and number of crimes for each bo
 
 Plotting ARIMA time series in R 
 
-1. Download dataset 
+1. Download necessary datasets from either this master or links indicated above
 2. Put path to the data in the code 
