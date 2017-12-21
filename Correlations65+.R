@@ -45,7 +45,7 @@ totalpopmelted <- melt(totalpop, id.vars="Borough", value.name = "total_pop", va
 mergedtotalpopandperc65 <- cbind(pop65melted, totalpopmelted)[order(c(seq_along(pop65melted), seq_along(totalpopmelted)))]
 mergedtotalpopandper65$Borough.1 <-NULL
 mergedtotalpopandper65$Year.1 <- NULL
-mergedtotalpopandper65$total65pop <- with(mergedtotalpopandper65, 65_plus * total_pop)
+mergedtotalpopandper65$total65pop <- with(mergedtotalpopandper65, perc_65plus * total_pop)
 mergedtotalpopandper65$perc_65plus <- NULL
 mergedtotalpopandper65$total_pop <- NULL
 
