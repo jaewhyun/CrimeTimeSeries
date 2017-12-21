@@ -1,12 +1,12 @@
 ## load crime data
-crimedata <- read.csv(file = "/Users/jaewonhyun/Downloads/NYPD_Complaint_Data_Historic.csv", header = TRUE, sep=",")
+crimedata <- read.csv(file = "##put path to file here", header = TRUE, sep=",")
 
 ## clean up the data so that the only 2 columns are "complaint date" and "borough name"
 crimedata <- crimedata[c("CMPLNT_FR_DT", "BORO_NM")]
 ## clean up data for the rows that only contain Manhattan 
 crimedata_manhattan <- crimedata[crimedata$BORO_NM %in% c("MANHATTAN"), ]
 ## export the dataframe to csv
-write.csv(crimedata_manhattan, file = "/Users/jaewonhyun/Desktop/MSCS Fall 2017/final.csv")
+##write.csv(crimedata_manhattan, file = "")
 
 ## Used pivot table in Excel in order to process the data further
 ## Added up the number of crimes per day for Manhattan since Januaray 01, 2006 until December 31st, 2016
@@ -18,7 +18,7 @@ write.csv(crimedata_manhattan, file = "/Users/jaewonhyun/Desktop/MSCS Fall 2017/
 ## After aggregating the number of crimes per day in Manhattan, we noticed that there wasn't much data from 2011 to 2014.
 ## We deleted the data that we had for those years to allow for more accurate time series analysis - (we used data only from 2006 to 2010)
 
-manhattan <- read.csv(file = "/Users/jaewonhyun/Desktop/MSCS Fall 2017/final.csv", header = TRUE, sep = ",")
+manhattan <- read.csv(file = "##put path to the final.csv file after download", header = TRUE, sep = ",")
 manhattan <- ts(manhattan[,2],start = c(2006,1), frequency = 12)
 plot(manhattan, xlab = 'Years', ylim=c(0,12000), ylab = 'number of crimes in Manhattan')
 
