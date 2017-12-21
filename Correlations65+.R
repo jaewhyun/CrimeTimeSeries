@@ -40,13 +40,13 @@ colnames(totalpop)[11] <- "2015"
 colnames(totalpop)[12] <- "2016"
 
 library("reshape2")
-pop65melted <- melt(pop65, id.vars="Borough", value.name = "65_plus", variable.name="Year")
+pop65melted <- melt(pop65, id.vars="Borough", value.name = "perc_65plus", variable.name="Year")
 totalpopmelted <- melt(totalpop, id.vars="Borough", value.name = "total_pop", variable.name="Year")
 mergedtotalpopandperc65 <- cbind(pop65melted, totalpopmelted)[order(c(seq_along(pop65melted), seq_along(totalpopmelted)))]
 mergedtotalpopandper65$Borough.1 <-NULL
 mergedtotalpopandper65$Year.1 <- NULL
 mergedtotalpopandper65$total65pop <- with(mergedtotalpopandper65, 65_plus * total_pop)
-mergedtotalpopandper65$65_plus <- NULL
+mergedtotalpopandper65$perc_65plus <- NULL
 mergedtotalpopandper65$total_pop <- NULL
 
 ## manually input total number of crimes per borough into Excel 
