@@ -1,11 +1,11 @@
-// load crime data
+## load crime data
 crimedata <- read.csv(file = "/Users/jaewonhyun/Downloads/NYPD_Complaint_Data_Historic.csv", header = TRUE, sep=",")
 
-// clean up the data so that the only 2 columns are "complaint date" and "borough name"
+## clean up the data so that the only 2 columns are "complaint date" and "borough name"
 crimedata <- crimedata[c("CMPLNT_FR_DT", "BORO_NM")]
-// clean up data for the rows that only contain Manhattan 
+## clean up data for the rows that only contain Manhattan 
 crimedata_manhattan <- crimedata[crimedata$BORO_NM %in% c("MANHATTAN"), ]
-// export the dataframe to csv
+## export the dataframe to csv
 write.csv(crimedata_manhattan, file = "/Users/jaewonhyun/Desktop/MSCS Fall 2017/final.csv")
 
 ## Used pivot table in Excel in order to process the data further
@@ -34,21 +34,21 @@ par(mfrow=c(1,2))
 acf(ts(diff(log10(manhattan))),main = 'ACF Number of Crimes')
 pacf(ts(diff(log10(manhattan))), main = 'PACF Number of Crimes')
 
-// getting ARIMA summary based on dataset
+## getting ARIMA summary based on dataset
 require(forecast)
 ARIMAfit = auto.arima(log10(manhattan), approximation=FALSE, trace=FALSE)
 summary(ARIMAfit)
 
-// plotting the future
+## plotting the future
 par(mfrow = c(1,1))
-// how far do we want to predict ahead
+## how far do we want to predict ahead
 predicted = predict(ARIMAfit, n.ahead = 36)
 predictedplot = plot(manhattan, type='l', xlim=c(2006, 2011), ylim = (0, 12000), xlab = 'Year', ylab = 'Number of Crimes')
 lines(10^(predictedplot$predplot),col='blue')
 lines(10^(predictedplot$predplot+2*predictedplot$se),col='orange')
 lines(10^(predictedplot$predplot-2*predictedplot$se),col='orange')
 
-// checking for residuals
+## checking for residuals
 par(mfrow=c(1,2))
 acf(ts(ARIMAfit$residuals),main='ACF Residual')
 pacf(ts(ARIMAfit$residuals),main='PACF Residual')
