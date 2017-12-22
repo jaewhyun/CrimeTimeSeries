@@ -14,6 +14,11 @@ pop65 <- pop65 %>%
 totalpop <- totalpop %>%
   + slice(match(x, Borough))
 
+pop65$X2000 <- NULL
+pop65$X2005 <- NULL
+totalpop$X2000 <- NULL
+totalpop$X2005 <- NULL
+
 colnames(pop65)[2] <- "2006"
 colnames(pop65)[3] <- "2007"
 colnames(pop65)[4] <- "2008"
@@ -58,7 +63,7 @@ pop65_numcrime$Borough <- as.factor(pop65_numcrime$Borough)
 
 ##plot with ggplot
 library(ggplot2)
-ggplot(pop65_numcrime, aes(x=Total_65plus, y=Total_Crime, shape=Borough, color=Borough)) + geom_point() + geom_smooth(method=lm)
+ggplot(pop65_numcrime, aes(x=total65pop, y=total_crime, shape=Borough, color=Borough)) + geom_point() + geom_smooth(method=lm)
 
 #seperate by boroughs
 justmanh <- pop65_numcrime[pop65_numcrime$Borough %in% c("Manhattan"), ]
@@ -73,9 +78,17 @@ cor(justbrooklyn$total65pop, justbrooklyn$total_crime, method = "pearson", use =
 cor(justqueens$total65pop, justqueens$total_crime, method = "pearson", use = "complete.obs")
 cor(juststaten$total65pop, juststaten$total_crime, method = "pearson", use = "complete.obs")
 
+ggplot(juststaten, aes(x=Year, y=total_crime, group=1, color = "red")) + geom_line() + geom_point(size=1) + ggtitle("Staten Island 2006 - 2016")
+ggplot(juststaten, aes(x=Year, y=total65pop)) + geom_line(aes(group=1), colour = "blue") + geom_point(size=1, colour = "blue") + ggtitle("Staten Island 2006 - 2016")
 
+ggplot(justbrooklyn, aes(x=Year, y=total65pop)) + geom_line(aes(group=1), colour = "blue") + geom_point(size=1, colour = "blue") + ggtitle("Brooklyn 2006 - 2016")
+ggplot(justbrooklyn, aes(x=Year, y=total_crime, group=1, color = "red")) + geom_line() + geom_point(size=1) + ggtitle("Brooklyn 2006 - 2016")
 
+ggplot(justqueens, aes(x=Year, y=total65pop)) + geom_line(aes(group=1), colour = "blue") + geom_point(size=1, colour = "blue") + ggtitle("Queens 2006 - 2016")
+ggplot(justqueens, aes(x=Year, y=total_crime, group=1, color = "red")) + geom_line() + geom_point(size=1) + ggtitle("Queens 2006 - 2016")
 
+ggplot(justbronx, aes(x=Year, y=total65pop)) + geom_line(aes(group=1), colour = "blue") + geom_point(size=1, colour = "blue") + ggtitle("Bronx 2006 - 2016")
+ggplot(justbronx, aes(x=Year, y=total_crime, group=1, color = "red")) + geom_line() + geom_point(size=1) + ggtitle("Bronx 2006 - 2016")
 
-
-
+ggplot(justmanh, aes(x=Year, y=total65pop)) + geom_line(aes(group=1), colour = "blue") + geom_point(size=1, colour = "blue") + ggtitle("Manhattan 2006 - 2016")
+ggplot(justmanh, aes(x=Year, y=total_crime, group=1, color = "red")) + geom_line() + geom_point(size=1) + ggtitle("Manhattan 2006 - 2016")
