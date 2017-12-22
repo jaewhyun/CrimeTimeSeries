@@ -10,8 +10,7 @@ library(dplyr)
 x <- c("Bronx", "Manhattan", "Queens", "Brooklyn", "Staten Island")
 pop65 <- pop65 %>%
   + slice(match(x, Borough))
- 
-totalpop <- c("Bronx", "Manhattan", "Queens", "Brooklyn", "Staten Island")
+
 totalpop <- totalpop %>%
   + slice(match(x, Borough))
 
