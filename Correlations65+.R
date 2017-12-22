@@ -49,8 +49,8 @@ mergedtotalpopandper65$perc_65plus <- NULL
 mergedtotalpopandper65$total_pop <- NULL
 
 ## manually input total number of crimes per borough into Excel 
-total_num_crime <- read.csv(file = "/Users/jaewonhyun/Downloads/numberofcrimes_borough", header = TRUE, sep=",")
-totalnumcrime_melted <- melt(totalnumcrime_melted, id.vars="Borough", value.name = "total_crime", variable.name="Year")
+total_num_crime <- read.csv(file = "/Users/jaewonhyun/Downloads/numberofcrimes_borough.csv", header = TRUE, sep=",")
+totalnumcrime_melted <- melt(total_num_crime, id.vars="Borough", value.name = "total_crime", variable.name="Year")
 pop65_numcrime <- cbind(mergedtotalpopandper65, totalnumcrime_melted)[order(c(seq_along(mergedtotalpopandper65), seq_along(totalnumcrime_melted)))]
 pop65_numcrime$Borough.1 <- NULL
 pop65_numcrime$Year.1 <- NULL
