@@ -72,11 +72,17 @@ justbrooklyn <- pop65_numcrime[pop65_numcrime$Borough %in% c("Brooklyn"), ]
 juststaten <- pop65_numcrime[pop65_numcrime$Borough %in% c("Staten Island"), ]
 justqueens <- pop65_numcrime[pop65_numcrime$Borough %in% c("Queens"), ]
 
-cor(justmanh$total65pop, justmanh$total_crime, method = "pearson", use = "complete.obs")
-cor(justbronx$total65pop, justbronx$total_crime, method = "pearson", use = "complete.obs")
-cor(justbrooklyn$total65pop, justbrooklyn$total_crime, method = "pearson", use = "complete.obs")
-cor(justqueens$total65pop, justqueens$total_crime, method = "pearson", use = "complete.obs")
-cor(juststaten$total65pop, juststaten$total_crime, method = "pearson", use = "complete.obs")
+justmanhcor <- cor.test(justmanh$total65pop, justmanh$total_crime, method = "pearson")
+justbronxcor <- cor.test(justbronx$total65pop, justbronx$total_crime, method = "pearson")
+justbrooklyncor <- cor.test(justbrooklyn$total65pop, justbrooklyn$total_crime, method = "pearson")
+justqueenscor <- cor.test(justqueens$total65pop, justqueens$total_crime, method = "pearson")
+juststatencor <- cor.test(juststaten$total65pop, juststaten$total_crime, method = "pearson")
+
+justmanhcor
+justbronxcor
+justbrooklyncor
+justqueenscor
+juststatencor
 
 ggplot(juststaten, aes(x=Year, y=total_crime, group=1, color = "red")) + geom_line() + geom_point(size=1) + ggtitle("Staten Island 2006 - 2016")
 ggplot(juststaten, aes(x=Year, y=total65pop)) + geom_line(aes(group=1), colour = "blue") + geom_point(size=1, colour = "blue") + ggtitle("Staten Island 2006 - 2016")
