@@ -41,7 +41,7 @@ colnames(totalpop)[12] <- "2016"
 library("reshape2")
 pop65melted <- melt(pop65, id.vars="Borough", value.name = "perc_65plus", variable.name="Year")
 totalpopmelted <- melt(totalpop, id.vars="Borough", value.name = "total_pop", variable.name="Year")
-mergedtotalpopandperc65 <- cbind(pop65melted, totalpopmelted)[order(c(seq_along(pop65melted), seq_along(totalpopmelted)))]
+mergedtotalpopandper65 <- cbind(pop65melted, totalpopmelted)[order(c(seq_along(pop65melted), seq_along(totalpopmelted)))]
 mergedtotalpopandper65$Borough.1 <-NULL
 mergedtotalpopandper65$Year.1 <- NULL
 mergedtotalpopandper65$total65pop <- with(mergedtotalpopandper65, perc_65plus * total_pop)
